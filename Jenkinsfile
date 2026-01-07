@@ -40,7 +40,7 @@ pipeline {
                 junit 'test-results/junit.xml'
         }
             }
-            stage('Deploy') {
+        stage('Deploy') {
             agent {
                 docker {
                     image 'node:18-alpine'
@@ -52,7 +52,7 @@ pipeline {
                 sh '''
                 npm install netlify-cli -g
                 netlify --version
-                sh '''
+                sh '''   
             }
     }
 }
