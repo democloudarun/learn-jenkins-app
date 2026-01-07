@@ -17,7 +17,7 @@ pipeline {
                 npm ci
                 npm run build
                 ls -la
-                '''
+                sh '''
             }
         }
         stage ('Test') {
@@ -40,7 +40,7 @@ pipeline {
                 junit 'test-results/junit.xml'
         }
             }
-        stage('Deploy') {
+            stage('Deploy') {
             agent {
                 docker {
                     image 'node:18-alpine'
@@ -50,10 +50,9 @@ pipeline {
         
             steps {
                 sh '''
-                npm install netlify-cli-g
+                npm install netlify-cli -g
                 netlify --version
-                '''
+                sh '''
             }
-        }
     }
 }
