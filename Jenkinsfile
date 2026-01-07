@@ -31,15 +31,9 @@ pipeline {
                 sh '''
                 test -f build/index.html
                 npm test
-                sh'''
+                '''
             }
         }
-    
-            post {
-                always {
-                junit 'test-results/junit.xml'
-                }
-            }
         stage('Deploy') {
             agent {
                 docker {
@@ -52,8 +46,13 @@ pipeline {
                 sh '''
                 npm install netlify-cli -g
                 netlify --version
-                sh '''   
+                '''   
             }
         }
     }
+     post {
+                always {
+                junit 'test-results/junit.xml'
+                }
+            }
 }
