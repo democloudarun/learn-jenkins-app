@@ -34,7 +34,7 @@ pipeline {
                 sh'''
             }
         }
-    }
+    
             post {
                 always {
                 junit 'test-results/junit.xml'
@@ -54,5 +54,6 @@ pipeline {
                 netlify --version
                 sh '''   
             }
+        }
     }
 }
